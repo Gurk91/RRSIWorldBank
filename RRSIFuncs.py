@@ -24,10 +24,19 @@ class Data:
 		ret_val = data.json()
 		return ret_val[1][self.year_index['value']]
 
-	
+	def PovertyRate(self):
+		data = requests.get('http://api.worldbank.org/v2/country/{}/indicator/SI.POV.DDAY?format=json'.format(self.country))
+		ret_val = data.json()
+		return ret_val[1][self.year_index]['value']
 
+#Need to include method for case where no data is available... preferably to output last available data
 
-brazil = Data('BRA', 25)
-print(brazil.GDPPerCapPPP())
+brazil = Data('USA', 1)
+#print(brazil.PovertyRate())
 
+data = requests.get('http://api.worldbank.org/v2/country/IND/indicator/SI.POV.DDAY?format=json')
+ret_val = data.json()
+print(ret_val[1][7])
+
+print("Hello")
 
